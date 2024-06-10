@@ -2,6 +2,9 @@
 
 Este proyecto ha sido creado utilizando la siguiente version de Angular [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
+![image](https://github.com/Fabclemente/Tienda_Online_2.0/assets/144067212/20346233-01f3-48a0-a076-9b2accec49dd)
+
+
 # Node Version
 
 Este proyecto esta usando la version 14.21.3
