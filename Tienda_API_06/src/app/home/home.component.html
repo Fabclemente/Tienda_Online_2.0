@@ -1,0 +1,71 @@
+<!-- Barra superior -->
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Tienda Online - El Relajo FAB</a>
+      <button class="btn btn-outline-light">
+        <i class="bi bi-cart"></i> Carrito <span class="badge bg-secondary">{{ contarProductosEnCarrito() }}</span>
+      </button>
+    </div>
+  </nav>
+  
+  
+  <!-- Carousel -->
+ <!-- Carousel -->
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let producto of productosFiltrados; let i = index" [class.active]="i === 0">
+        <img *ngIf="i === 0" src="{{ producto.image }}" class="d-block w-100" style="max-height: 300px; object-fit: contain;" alt="{{ producto.title }}">
+        <img *ngIf="i !== 0" src="{{ producto.image }}" class="d-none d-md-block w-100" style="max-height: 300px; object-fit: contain;" alt="{{ producto.title }}">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+  
+  
+  <!-- Barra de filtro -->
+  <div class="container mt-3">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Filtrar por categoría
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li *ngFor="let categoria of categorias">
+          <a class="dropdown-item" href="#" (click)="filtrarCategoria(categoria)">{{ categoria }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Lista de productos -->
+  <!-- Lista de productos -->
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let producto of productosFiltrados">
+        <div class="card h-100">
+          <img src="{{ producto.image }}" class="card-img-top" alt="{{ producto.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.title }}</h5>
+            <p class="card-text">${{ producto.price }}</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-success" (click)="toggleDetalles(producto)">Detalles</button>
+              <button class="btn btn-dark" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+            </div>
+            <div *ngIf="producto.mostrarDetalles" class="mt-2">
+              <p>{{ producto.description }}</p>
+              <p>Categoría: {{ producto.category }}</p>
+              <p>Rating: {{ producto.rating.rate }} ({{ producto.rating.count }} votos)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
